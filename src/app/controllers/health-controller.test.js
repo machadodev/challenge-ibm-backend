@@ -1,7 +1,14 @@
-function sum(a, b) {
-  return a + b;
-}
+const healthController = require('./health-controller');
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+describe('Controllers :: HealthController', () => {
+  const mockRes = {
+    json: jest.fn((x) => x),
+  };
+
+  const health = healthController.getHealth({}, mockRes);
+  const UP = { status: 'UP' };
+
+  it('Health check should return UP when app is reachable', () => {
+    expect(health).toMatchObject(UP);
+  });
 });
