@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon --exec sucrase-node ./src/index.js",
     "start": "node ./src/index.js",
-    "test": "cross-env NODE_ENV=test jest --passWithNoTests ./src",
+    "test": "jest --passWithNoTests ./src",
     "lint": "eslint --fix",
     "prepare": "husky install",
     "swagger-autogen": "node ./src/docs/swagger.js"
