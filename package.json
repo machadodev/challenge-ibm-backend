@@ -4,7 +4,7 @@
     "start": "cross-env NODE_ENV=production node ./src/index.js",
     "test": "cross-env NODE_ENV=test jest --passWithNoTests ./src",
     "prepare": "husky install",
-    "swagger-autogen": "node ./src/swagger.js"
+    "swagger-autogen": "node ./src/docs/swagger.js"
   },
   "name": "backend",
   "version": "1.0.0",
@@ -23,7 +23,7 @@
     "dotenv": "^10.0.0"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",    
+    "cross-env": "^7.0.3",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
