@@ -1,9 +1,9 @@
 module.exports = function (app) {
   app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.json({ message: 'Hello World!' });
   });
 
   app.get('/about', (req, res) => {
-    res.send('about');
+    res.json({ message: 'about' });
   });
 };

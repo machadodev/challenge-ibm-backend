@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "dev": "nodemon --exec sucrase-node ./src/index.js",
-    "start": "node ./src/index.js",
-    "test": "jest --passWithNoTests ./src",
+    "dev": "cross-env NODE_ENV=development nodemon --exec sucrase-node ./src/index.js",
+    "start": "cross-env NODE_ENV=production node ./src/index.js",
+    "test": "cross-env NODE_ENV=test jest --passWithNoTests ./src",
     "prepare": "husky install",
     "swagger-autogen": "node ./src/swagger.js"
   },
@@ -19,9 +19,11 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.13",
     "swagger-autogen": "^2.11.2",
-    "swagger-ui-express": "^4.1.6"
+    "swagger-ui-express": "^4.1.6",
+    "dotenv": "^10.0.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",    
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
