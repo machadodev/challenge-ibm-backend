@@ -12,7 +12,9 @@ module.exports = () => {
       let vcapApplication = JSON.parse(process.env['VCAP_APPLICATION']);
       return {
         redirectUri:
-          'https://' + vcapApplication['application_uris'][0] + CALLBACK_URL,
+          'https://' +
+          vcapApplication['application_uris'][0] +
+          constants.CALLBACK_URL,
       };
     }
   }
