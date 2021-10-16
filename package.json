@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
   "name": "backend",
   "version": "1.0.0",
   "description": "Node app desenvolvido para atender ao desafio da IBM Brasil ",
@@ -7,6 +10,7 @@
   "author": "Leonardo Machado <leonardoms@id.uff.br>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
   }
 }
