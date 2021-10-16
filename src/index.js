@@ -21,7 +21,9 @@ app.use(
   })
 );
 
-logger.info('Env Vars');
+logger.info('Processo');
+logger.info(process.env);
+logger.info('App Env');
 logger.info(process.env['VCAP_APPLICATION']);
 
 require('./app/config/AppID')(app);
