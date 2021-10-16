@@ -17,6 +17,8 @@ app.use(morgan('combined'));
 require('./router')(app);
 
 console.log(process.env.TEST);
+console.log('-----------');
+console.log(process.env);
 
 app.listen(PORT, () => {
   console.log(`App listening at http://localhost:${PORT}`);
