@@ -1,6 +1,6 @@
 applications:
   - name: challenge-ibm-backend
     buildpack: https://github.com/cloudfoundry/nodejs-buildpack
-    random-route: true
+    random-route: false
     memory: 256M
     instances: 1
