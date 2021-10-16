@@ -5,7 +5,7 @@
     "test": "jest --passWithNoTests ./src",
     "lint": "eslint --fix",
     "prepare": "husky install",
-    "swagger-autogen": "node ./src/docs/swagger.js"
+    "docs": "node ./src/docs/swagger.js"
   },
   "name": "backend",
   "version": "1.0.0",
