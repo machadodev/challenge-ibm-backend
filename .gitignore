@@ -103,4 +103,4 @@ dist
 # TernJS port file
 .tern-port
 
-localdev-config.json
+appIdConfig.json

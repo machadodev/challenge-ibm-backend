@@ -18,6 +18,7 @@
     "cookie-session": "^1.4.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "helmet": "^4.6.0",
     "ibmcloud-appid": "^6.1.1",
     "log4js": "^6.3.0",

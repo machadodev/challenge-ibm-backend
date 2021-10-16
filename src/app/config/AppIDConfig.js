@@ -1,19 +1,19 @@
 const constants = require('../../lib/constants');
 module.exports = () => {
-  let config;
+  const config = require('./appIdConfig.json');
 
-  try {
-    // if running locally we'll have the local config file
-    config = require('./localdev-config.json');
-  } catch (e) {
+  const env = process.env.NODE_ENV || 'development';
+
+  if (env === 'development') {
+    config.redirectUri = `http://localhost:${constants.PORT}${constants.CALLBACK_URL}`;
+  } else if (process.env.VCAP_APPLICATION) {
     // running on CF
     let vcapApplication = JSON.parse(process.env['VCAP_APPLICATION']);
-    return {
-      redirectUri:
-        'https://' +
-        vcapApplication['application_uris'][0] +
-        constants.CALLBACK_URL,
-    };
+    config.redirectUri =
+      'https://' +
+      vcapApplication['application_uris'][0] +
+      constants.CALLBACK_URL;
   }
+
   return config;
 };
