@@ -3,7 +3,11 @@
   "info": {
     "title": "Challenge IBM Backend",
     "description": "Node app desenvolvido para atender ao desafio da IBM Brasil",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "contact": {
+      "name": "Leonardo Machado",
+      "email": "leonardoms@id.uff.br"
+    }
   },
   "host": "localhost:3000",
   "basePath": "/",
@@ -17,15 +21,8 @@
     "/": {
       "get": {
         "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/about": {
-      "get": {
-        "tags": [],
-        "description": "",
+        "summary": "Health Check",
+        "description": "Check if app is up.",
         "parameters": [],
         "responses": {}
       }
