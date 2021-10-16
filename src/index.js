@@ -21,7 +21,7 @@ app.use(
   })
 );
 
-require('./app/config/AppID')(app);
+//require('./app/config/AppID')(app);
 require('./router')(app);
 
 app.listen(constants.PORT, () => {
