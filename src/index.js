@@ -1,5 +1,5 @@
 const express = require('express');
-const session = require('express-session');
+const session = require('cookie-session');
 const app = express();
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -20,6 +20,9 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+logger.info('Env Vars');
+logger.info(process.env['VCAP_APPLICATION']);
 
 require('./app/config/AppID')(app);
 require('./router')(app);
