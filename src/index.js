@@ -8,7 +8,12 @@ require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(helmet());
+// if production, enable helmet
+/* istanbul ignore if  */
+if (process.env.VCAP_APPLICATION) {
+  app.use(helmet());
+}
+
 app.use(morgan('combined'));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
