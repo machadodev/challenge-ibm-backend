@@ -1,0 +1,12 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Node app desenvolvido para atender ao desafio da IBM Brasil ",
+  "main": "index.js",
+  "repository": "git@github.com:machadodev/challenge-ibm-backend.git",
+  "author": "Leonardo Machado <leonardoms@id.uff.br>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
