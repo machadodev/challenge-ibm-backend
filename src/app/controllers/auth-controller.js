@@ -16,16 +16,6 @@ exports.logout = (req, res) => {
   return res.redirect(process.env.UI_BASE_URL);
 };
 
-exports.isLoggedIn = (req, res, next) => {
-  console.log('isLoggedIn');
-  console.log(req.session);
-  if (req.session[WebAppStrategy.AUTH_CONTEXT]) {
-    return next();
-  } else {
-    return res.redirect(process.env.UI_BASE_URL);
-  }
-};
-
 exports.userAuth = (req, res) => {
   let loggedInAs = {};
   if (req.session[WebAppStrategy.AUTH_CONTEXT]) {
