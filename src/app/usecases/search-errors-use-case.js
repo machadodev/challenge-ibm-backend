@@ -1,7 +1,13 @@
 class SearchErrorsUseCase {
-  constructor() {}
+  constructor({ searchService, validator }) {
+    this.searchService = searchService;
+    this.validator = validator;
+  }
+
   search(payload) {
-    return payload;
+    this.validator.validate(payload);
+    return this.searchService.search(payload);
   }
 }
+
 module.exports = SearchErrorsUseCase;
