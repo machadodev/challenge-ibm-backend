@@ -4,9 +4,18 @@ class SearchErrorsUseCase {
     this.validator = validator;
   }
 
-  search(payload) {
+  async search(payload) {
     this.validator.validate(payload);
-    return this.searchService.search(payload);
+
+    const { items } = await this.searchService.search(payload);
+
+    const acceptedAnswersIds = items.map((item) => item.accepted_answer_id);
+
+    const possibleCorrectAnswers = await this.searchService.getAcceptedAnswer(
+      acceptedAnswersIds
+    );
+
+    return possibleCorrectAnswers;
   }
 }
 

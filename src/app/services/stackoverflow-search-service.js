@@ -22,6 +22,23 @@ class StackOverflowSearchService {
         .catch((error) => reject(error));
     });
   }
+
+  async getAcceptedAnswer(acceptedAnswersIds) {
+    const filters = {
+      acceptedAnswersIds: acceptedAnswersIds.reduce(
+        (previousValue, currentValue) => `${previousValue};${currentValue}`
+      ),
+    };
+
+    const SEARCH_URL = `${API_STACKOVERFLOW}/answers/${filters.acceptedAnswersIds}?order=desc&sort=activity&site=stackoverflow&filter=withbody`;
+
+    return new Promise((resolve, reject) => {
+      axios
+        .get(SEARCH_URL)
+        .then((response) => resolve(response.data))
+        .catch((error) => reject(error));
+    });
+  }
 }
 
 module.exports = StackOverflowSearchService;
