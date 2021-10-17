@@ -4,5 +4,7 @@ applications:
     random-route: false
     memory: 256M
     instances: 1
+    services:
+      - appIDChallenge
     env:
       UI_BASE_URL: https://challenge-ibm-frontend.mybluemix.net
