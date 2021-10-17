@@ -5,15 +5,32 @@ const WebAppStrategy = require('ibmcloud-appid').WebAppStrategy;
 const HealthController = require('../app/controllers/health-controller');
 const constants = require('../lib/constants');
 
-module.exports = function (app) {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-  app.get('/', HealthController.getHealth);
+const UI_BASE_URL = process.env.UI_BASE_URL;
 
-  app.get('/logout', (req, res) => {
-    //Note: if you enabled SSO for Cloud Directory be sure to use webAppStrategy.logoutSSO instead.
-    WebAppStrategy.logout(req);
-    res.redirect('/');
-  });
+module.exports = function (app) {
+  app.get('/', HealthController.getHealth);
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+  // custom middleware to redirect back to the page requested in the ?redirect query parameter to the request
+  function addRedirect(req, res, next) {
+    let redirectPage = '/'; // default to returning to the root page
+    if (req.query && req.query.redirect) {
+      redirectPage = req.query.redirect;
+    }
+
+    // this will set the redirect page so long as the WebAppStrategy does not specify a successRedirect option
+    req.originalUrl = UI_BASE_URL + redirectPage;
+
+    next();
+  }
+
+  // Explicit login endpoint. Will always redirect browser to login widget due to {forceLogin: true}. If forceLogin is set to false the redirect to login widget will not occur if user is already authenticated
+  app.get(
+    '/auth/login',
+    addRedirect,
+    passport.authenticate(WebAppStrategy.STRATEGY_NAME, { forceLogin: true })
+  );
+
   // Callback to finish the authorization process. Will retrieve access and identity tokens/
   // from AppID service and redirect to either (in below order)
   // 1. the original URL of the request that triggered authentication, as persisted in HTTP session under WebAppStrategy.ORIGINAL_URL key.
@@ -22,25 +39,41 @@ module.exports = function (app) {
   app.get(
     constants.CALLBACK_URL,
     passport.authenticate(WebAppStrategy.STRATEGY_NAME, {
-      failureRedirect: '/error',
+      allowAnonymousLogin: true,
     })
   );
 
-  // Protect everything under /api
-  app.use('/api', passport.authenticate(WebAppStrategy.STRATEGY_NAME));
-
-  app.get('/api/asd', (req, res) => {
-    return res.send('asd');
+  // Logout endpoint. Clears authentication information from session
+  app.get('/auth/logout', function (req, res) {
+    WebAppStrategy.logout(req);
+    return res.redirect(UI_BASE_URL);
   });
 
-  //Serves the identity token payload
-  app.get('/api/idPayload', (req, res) => {
-    return res.send(
-      req.session[WebAppStrategy.AUTH_CONTEXT].identityTokenPayload
-    );
+  app.get('/auth/logged', (req, res) => {
+    let loggedInAs = {};
+    if (req.session[WebAppStrategy.AUTH_CONTEXT]) {
+      loggedInAs['name'] = req.user.name;
+      loggedInAs['email'] = req.user.email;
+    }
+
+    res.send({
+      logged: req.session[WebAppStrategy.AUTH_CONTEXT] ? true : false,
+      loggedInAs: loggedInAs,
+    });
   });
 
-  app.get('/error', (req, res) => {
-    return res.send('Authentication Error');
+  function isLoggedIn(req, res, next) {
+    if (req.session[WebAppStrategy.AUTH_CONTEXT]) {
+      next();
+    } else {
+      res.redirect(UI_BASE_URL);
+    }
+  }
+
+  // short hand way to protect a series of different API end points
+  app.use('/api/*', isLoggedIn);
+
+  app.get('/api/name', (req, res) => {
+    res.send({ name: req.user.name });
   });
 };
