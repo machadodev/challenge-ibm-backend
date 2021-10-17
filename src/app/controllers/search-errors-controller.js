@@ -1,15 +1,25 @@
 const { SearchErrorsUseCase } = require('../usecases');
 const container = require('../providers');
+const logger = require('../config/logger');
 
 exports.search = async (req, res) => {
-  const { text } = req.body;
+  let result = null;
 
-  const searchErrorsUseCase = new SearchErrorsUseCase({
-    searchService: new container.resolve('searchService'),
-    validator: new container.resolve('validateTextSearch'),
-  });
+  try {
+    const { text } = req.body;
 
-  const response = await searchErrorsUseCase.search(text);
+    const searchErrorsUseCase = new SearchErrorsUseCase({
+      searchService: new container.resolve('searchService'),
+      validator: new container.resolve('validateTextSearch'),
+    });
 
-  return res.json(response);
+    const response = await searchErrorsUseCase.search(text);
+
+    result = res.status(200).json(response);
+  } catch (error) {
+    logger.error(error);
+    result = res.status(500).json({ message: 'Internal Error' });
+  }
+
+  return result;
 };
