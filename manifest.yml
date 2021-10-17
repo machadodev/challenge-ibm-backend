@@ -4,3 +4,5 @@ applications:
     random-route: false
     memory: 256M
     instances: 1
+    services:
+      - appIDChallenge
