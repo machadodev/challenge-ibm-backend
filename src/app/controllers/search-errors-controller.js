@@ -1,7 +1,7 @@
 const { SearchErrorsUseCase } = require('../usecases');
 const container = require('../providers');
 
-exports.search = (req, res) => {
+exports.search = async (req, res) => {
   const { text } = req.body;
 
   const searchErrorsUseCase = new SearchErrorsUseCase({
@@ -9,7 +9,7 @@ exports.search = (req, res) => {
     validator: new container.resolve('validateTextSearch'),
   });
 
-  const response = searchErrorsUseCase.search(text);
+  const response = await searchErrorsUseCase.search(text);
 
   return res.json(response);
 };
