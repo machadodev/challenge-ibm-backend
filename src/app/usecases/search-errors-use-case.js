@@ -7,15 +7,17 @@ class SearchErrorsUseCase {
   async search(payload) {
     this.validator.validate(payload);
 
-    const { items } = await this.searchService.search(payload);
+    const relatedQuestions = await this.searchService.search(payload);
 
-    const acceptedAnswersIds = items.map((item) => item.accepted_answer_id);
+    const acceptedAnswersIds = relatedQuestions.map(
+      (item) => item.accepted_answer_id
+    );
 
     const possibleCorrectAnswers = await this.searchService.getAcceptedAnswer(
       acceptedAnswersIds
     );
 
-    return possibleCorrectAnswers;
+    return possibleCorrectAnswers.map((answer) => answer.body);
   }
 }
 

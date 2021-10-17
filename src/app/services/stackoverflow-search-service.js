@@ -18,7 +18,7 @@ class StackOverflowSearchService {
     return new Promise((resolve, reject) => {
       axios
         .get(SEARCH_URL)
-        .then((response) => resolve(response.data))
+        .then((response) => resolve(response.data.items))
         .catch((error) => reject(error));
     });
   }
@@ -35,7 +35,7 @@ class StackOverflowSearchService {
     return new Promise((resolve, reject) => {
       axios
         .get(SEARCH_URL)
-        .then((response) => resolve(response.data))
+        .then((response) => resolve(response.data.items))
         .catch((error) => reject(error));
     });
   }
