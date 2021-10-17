@@ -1,7 +1,6 @@
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('../docs/swagger_output.json');
-const HealthController = require('../app/controllers/health-controller');
-const AuthController = require('../app/controllers/auth-controller');
+const { AuthController, HealthController } = require('../app/controllers');
 const {
   AddRedirectMiddleware,
   AuthCheckMiddleware,
