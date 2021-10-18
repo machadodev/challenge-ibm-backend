@@ -5,19 +5,24 @@ class SearchErrorsUseCase {
   }
 
   async search(payload) {
+    let result = [];
+
     this.validator.validate(payload);
 
     const relatedQuestions = await this.searchService.search(payload);
 
-    const acceptedAnswersIds = relatedQuestions.map(
-      (item) => item.accepted_answer_id
-    );
+    if (relatedQuestions.length > 0) {
+      const acceptedAnswersIds = relatedQuestions.map(
+        (item) => item.accepted_answer_id
+      );
 
-    const possibleCorrectAnswers = await this.searchService.getAcceptedAnswer(
-      acceptedAnswersIds
-    );
+      const possibleCorrectAnswers = await this.searchService.getAcceptedAnswer(
+        acceptedAnswersIds
+      );
 
-    return possibleCorrectAnswers.map((answer) => answer.body);
+      result = possibleCorrectAnswers.map((answer) => answer.body);
+    }
+    return result;
   }
 }
 
