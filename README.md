@@ -13,10 +13,15 @@ Node app desenvolvido para atender ao desafio da IBM Brasil.
 - [x] [Express](https://expressjs.com/pt-br/)
 - [x] [IBM Cloud Foundry](https://www.ibm.com/br-pt/cloud/cloud-foundry)
 - [x] [IBM Cloud AppID](https://www.ibm.com/br-pt/cloud/app-id)
+- [x] [Swagger](https://swagger.io/)
 
 ## App
 
 Este app foi desenvolvido como avaliação da IBM Brasil. Ele está integrado com a IBM cloud. Seu objetivo é receber uma requisição com um texto que reporta um erro e tentar consultar uma solução no Stack Overflow.
+
+### Documentação
+
+A documentação do App foi feita com o [Swagger](https://swagger.io/) e pode ser acessada na rota /api-docs.
 
 ### Instalação
 
