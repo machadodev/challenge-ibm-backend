@@ -2,8 +2,6 @@
 
 [![forthebadge made-with-python](https://forthebadge.com/images/badges/works-on-my-machine.svg)](#)
 
-_Leonardo Machado_<br>
-
 Node app desenvolvido para atender ao desafio da IBM Brasil.
 
 ## Stack
@@ -50,14 +48,14 @@ Para utilizar o AppID é necessário preencher este arquivo. Acesse sua instânc
 Para compilar o app (versão utilizada em produção):
 
 ```sh
-$ cd backend
+$ cd challenge-ibm-backend
 $ yarn build
 ```
 
 Para rodar o app em desenvolvimento:
 
 ```sh
-$ cd backend
+$ cd challenge-ibm-backend
 $ yarn dev
 ```
 
@@ -66,6 +64,11 @@ $ yarn dev
 Para rodar os testes basta digitar:
 
 ```sh
-$ cd backend
+$ cd challenge-ibm-backend
 $ yarn test
 ```
+
+#### Autor
+
+_Leonardo Machado_
+_Rio de Janeiro, Brasil - 2021_
