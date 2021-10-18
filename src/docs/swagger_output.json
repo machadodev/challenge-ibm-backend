@@ -21,9 +21,90 @@
     "/": {
       "get": {
         "tags": [],
-        "summary": "Health Check",
-        "description": "Check if app is up.",
+        "summary": "Ping",
+        "description": "Verifica se a aplicação está ONLINE",
         "parameters": [],
+        "responses": {}
+      }
+    },
+    "/auth/login": {
+      "get": {
+        "tags": [],
+        "summary": "Entrar",
+        "description": "Força o login com AppID",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "tags": [],
+        "summary": "Sair",
+        "description": "Faz logout da aplicação",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/auth/logged": {
+      "get": {
+        "tags": [],
+        "summary": "Verifica se o usuário está logado",
+        "description": "Verifica se o usuário está logado e devolve um booleano, nome e mail caso esteja conectado",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/ibm/cloud/appid/callback": {
+      "get": {
+        "tags": [],
+        "summary": "Callback Login",
+        "description": "Função de retorno quando o usuário se conecta",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/search": {
+      "post": {
+        "tags": [],
+        "summary": "Busca erros no Stack Overflow",
+        "description": "Faz uma busca no Stack Overflow sobre determinado assunto e tenta dar uma solução.",
+        "parameters": [
+          {
+            "name": "text",
+            "in": "body",
+            "description": "Elemento que será buscado.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pagesize",
+            "in": "body",
+            "description": "Quantos elementos serão devolvidos no máximo.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "body",
+            "description": "Que tipo de ordenação será utilizada para trazer os resultados",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "in": "body",
+            "description": "Se será ascendente ou decrescente",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accepted",
+            "in": "body",
+            "description": "True ou False para retornar somente respostas marcadas como aceitas",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "responses": {}
       }
     }
