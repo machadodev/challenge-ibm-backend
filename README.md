@@ -2,8 +2,6 @@
 
 [![forthebadge made-with-python](https://forthebadge.com/images/badges/works-on-my-machine.svg)](#)
 
-_Leonardo Machado_<br>
-
 Node app desenvolvido para atender ao desafio da IBM Brasil.
 
 ## Stack
@@ -22,6 +20,14 @@ Este app foi desenvolvido como avaliação da IBM Brasil. Ele está integrado co
 ### Documentação
 
 A documentação do App foi feita com o [Swagger](https://swagger.io/) e pode ser acessada na rota /api-docs.
+Para gerar a documentação, basta executar:
+
+```sh
+$ cd challenge-ibm-backend
+$ yarn docs
+```
+
+O arquivo será gerado em src/app/docs/
 
 ### Instalação
 
@@ -30,7 +36,7 @@ A documentação do App foi feita com o [Swagger](https://swagger.io/) e pode se
 Após clonar o repositório, é necessário executar o comando:
 
 ```sh
-$ cd backend
+$ cd challenge-ibm-backend
 $ cp .env.example .env
 ```
 
@@ -39,7 +45,7 @@ Dessa forma as variáveis de ambiente ficarão disponíveis. Basta preencher com
 Também será necessário copiar o arquivo de configuração do AppID:
 
 ```sh
-$ cd backend/src/app/config
+$ cd challenge-ibm-backend/src/app/config
 $ cp localdev-config.json.example localdev-config.json
 ```
 
@@ -47,25 +53,41 @@ Para utilizar o AppID é necessário preencher este arquivo. Acesse sua instânc
 
 ### Compilação e execução
 
-Para compilar o app (versão utilizada em produção):
+Para rodar o app (versão utilizada em produção):
 
 ```sh
-$ cd backend
-$ yarn build
+$ cd challenge-ibm-backend
+$ yarn start
 ```
 
 Para rodar o app em desenvolvimento:
 
 ```sh
-$ cd backend
+$ cd challenge-ibm-backend
 $ yarn dev
 ```
+
+### Lint
+
+Caso queira fazer o lint do projeto, basta digitar:
+
+```sh
+$ cd challenge-ibm-backend
+$ yarn lint
+```
+
+Porém, não há necessidade, pois o lint é executado através do lint-staged em todo _commit_.
 
 ### Testes
 
 Para rodar os testes basta digitar:
 
 ```sh
-$ cd backend
+$ cd challenge-ibm-backend
 $ yarn test
 ```
+
+#### Autor
+
+_Leonardo Machado_<br>
+_Rio de Janeiro, Brasil - 2021_
