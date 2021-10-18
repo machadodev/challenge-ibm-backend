@@ -22,5 +22,5 @@ module.exports = function (app) {
   app.get('/auth/logout', AuthController.logout);
   app.get('/auth/logged', AuthController.userAuth);
   app.get('/ibm/cloud/appid/callback', AuthController.cbAuthorization());
-  app.post('/search', SearchErrorsController.search);
+  app.post('/api/search', SearchErrorsController.search);
 };
