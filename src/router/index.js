@@ -26,7 +26,7 @@ module.exports = function (app) {
     // #swagger.summary = "Entrar"
     // #swagger.description = "Força o login com AppID"
 
-    AuthController.login();
+    AuthController.login()(req, res);
   });
   app.get('/auth/logout', (req, res) => {
     // #swagger.summary = "Sair"
@@ -44,7 +44,7 @@ module.exports = function (app) {
     // #swagger.summary = "Callback Login"
     // #swagger.description = "Função de retorno quando o usuário se conecta"
 
-    AuthController.cbAuthorization();
+    AuthController.cbAuthorization()(req, res);
   });
 
   app.post('/api/search', (req, res) => {
