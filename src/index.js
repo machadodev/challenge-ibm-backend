@@ -9,13 +9,16 @@ const logger = require('./app/config/logger');
 const constants = require('./lib/constants');
 
 app.use(cors({ credentials: true, origin: process.env.UI_BASE_URL }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('tiny'));
 
 // if production, enable helmet
 /* istanbul ignore if  */
 if (process.env.VCAP_APPLICATION) {
   app.use(helmet());
 }
-app.use(morgan('tiny'));
+
 app.use(
   session({
     secret: '123456',

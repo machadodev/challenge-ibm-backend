@@ -1,0 +1,12 @@
+{
+  "clientId": "",
+  "tenantId": "",
+  "secret": "",
+  "name": "",
+  "oAuthServerUrl": "",
+  "profilesUrl": "",
+  "discoveryEndpoint": "",
+  "type": "",
+  "scopes": [],
+  "redirectUri": ""
+}
